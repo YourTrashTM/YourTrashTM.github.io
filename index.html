@@ -9,42 +9,61 @@
       color: #000000;
       margin: 0;
     }
-    .frame {
-      border: 2px inset #888;
-      margin: 20px;
-      padding: 10px;
-      background-color: #f5f5f5;
-    }
     .header {
-      background-color: #003366;
+      background-color: #660000;
       color: #ffffff;
-      padding: 10px;
+      padding: 15px;
       text-align: center;
       font-weight: bold;
-      font-size: 18px;
-      border-bottom: 3px double #000;
+      font-size: 20px;
+      border-bottom: 3px double #990000;
     }
     .nav {
       background-color: #e0e0e0;
-      padding: 5px;
+      padding: 8px;
       text-align: center;
-      border-bottom: 2px solid #999;
+      border-bottom: 2px solid #990000;
     }
     .nav a {
-      margin: 0 10px;
+      margin: 0 12px;
       text-decoration: none;
       color: #000;
       font-weight: bold;
     }
-    .section {
+    .frame {
+      border: 2px inset #888;
+      margin: 20px;
+      padding: 20px;
+      background-color: #f5f5f5;
+    }
+    .announcement {
+      background-color: #fff0f0;
+      color: #660000;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px dashed #990000;
+    }
+    .banner {
+      text-align: center;
       margin-top: 20px;
+    }
+    .banner img {
+      max-width: 100%;
+      height: auto;
+      border: 2px solid #990000;
+    }
+    .contact-box {
+      background-color: #eeeeee;
+      padding: 10px;
+      margin-top: 30px;
+      border: 1px solid #999;
     }
     .footer {
       font-size: 10px;
       color: #555;
       text-align: center;
       padding: 10px;
-      border-top: 1px solid #999;
+      border-top: 1px solid #990000;
     }
   </style>
 </head>
@@ -61,24 +80,41 @@
     <a href="#legal">DISCLAIMER</a>
   </div>
 
+  <div class="banner">
+    <img src="corebreach_banner.jpg" alt="CoreBreach Facility (1992)">
+  </div>
+
   <div class="frame">
-    <div id="about" class="section">
-      <h2>ABOUT COREBreach</h2>
-      <p>CoreBreach is a federally contracted provider of remote infrastructure diagnostics, topographical signal mapping, and analog-digital integration services. Founded in 1974, our mission is to bring reliable technical frameworks to rural, challenging, and geologically complex environments.</p>
-      <p>Through partnerships with federal and state agencies, CoreBreach ensures uninterrupted access to field communication systems and logistical frameworks in isolated regions across the Pacific Northwest.</p>
+    <div class="announcement">
+      <b>System Maintenance Notice:</b> Field transmission relays across Ridge 7 will be offline from 22:00–04:00 PST for calibration. Expect degraded uplink performance.
     </div>
 
-    <div id="solutions" class="section">
-      <h2>INFRASTRUCTURE SOLUTIONS</h2>
+    <div id="about">
+      <h2>ABOUT COREBreach</h2>
+      <p>CoreBreach is a federally contracted infrastructure solutions provider specializing in network reliability, signal maintenance, and long-range communications across rural and mountainous regions. Founded in 1974, the organization has played a critical role in supporting public safety networks and environmental monitoring operations in the Pacific Northwest.</p>
+      <p>Our installations are trusted by local governments, utility cooperatives, and emergency response providers to maintain uptime in even the most geologically complex terrain. All operations are conducted in full compliance with regional and federal regulatory standards.</p>
+    </div>
+
+    <div id="solutions">
+      <h2>OUR SERVICES</h2>
       <ul>
-        <li>Signal Topography & Ridge Analysis</li>
-        <li>Analog-Digital Integration Mapping</li>
-        <li>Legacy Systems Rewiring & Terminal Services</li>
-        <li>Cold Environment Cabling Optimization</li>
+        <li>Installation and upkeep of fiber-optic and coaxial cabling</li>
+        <li>Signal relay and tower network design for remote terrain</li>
+        <li>Diagnostics for analog and digital communication systems</li>
+        <li>Environmental telemetry routing for weather and wildlife sensors</li>
+        <li>Secure field infrastructure consulting for federal projects</li>
       </ul>
     </div>
 
-    <div id="legal" class="section">
+    <div class="contact-box">
+      <h3>Contact</h3>
+      <p>Email: <a href="mailto:inquiries@corebreach.org">inquiries@corebreach.org</a></p>
+      <p>Tel: (555) 091-1984</p>
+      <p>Fax: (555) 091-1985</p>
+      <p>Facility Address: CoreBreach Group, Ridge 7 Complex, Hollowpine WA 98271</p>
+    </div>
+
+    <div id="legal">
       <h2>DISCLAIMER</h2>
       <p>This site is a legacy interface intended for verified government contractors and authorized personnel only. CoreBreach disclaims responsibility for archival integrity and operational anomalies. Do not interact with off-map systems without prior clearance. Report persistent signal interference to your regional liaison or terminal supervisor.</p>
     </div>
