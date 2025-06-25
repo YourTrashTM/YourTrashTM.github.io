@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CoreBreach Staff Login</title>
+  <style>
+    body {
+      background-color: #dcdcdc;
+      font-family: "Courier New", Courier, monospace;
+      color: #000000;
+      margin: 0;
+    }
+    .header {
+      background-color: #660000;
+      color: #ffffff;
+      padding: 15px;
+      text-align: center;
+      font-size: 20px;
+      font-weight: bold;
+      border-bottom: 3px double #990000;
+    }
+    .nav {
+      background-color: #e0e0e0;
+      padding: 8px;
+      text-align: center;
+      border-bottom: 2px solid #990000;
+    }
+    .nav a {
+      margin: 0 12px;
+      text-decoration: none;
+      color: #000;
+      font-weight: bold;
+    }
+    .login-panel {
+      background-color: #f5f5f5;
+      margin: 40px auto;
+      padding: 20px;
+      border: 2px inset #990000;
+      width: 300px;
+      text-align: center;
+    }
+    input[type="text"], input[type="password"] {
+      width: 90%;
+      padding: 8px;
+      margin: 8px 0;
+      border: 1px solid #990000;
+    }
+    button {
+      padding: 8px 16px;
+      border: 1px solid #990000;
+      background-color: #ffffff;
+      color: #990000;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    #error-message {
+      color: #990000;
+      margin-top: 10px;
+      font-size: 12px;
+    }
+    .footer {
+      text-align: center;
+      font-size: 10px;
+      color: #666;
+      padding: 10px;
+      border-top: 1px solid #990000;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    COREBreach Infrastructure Systems Group<br>
+    INTERNAL ACCESS PORTAL
+  </div>
+
+  <div class="nav">
+    <a href="index.html#about">ABOUT</a>
+    <a href="index.html#solutions">SOLUTIONS</a>
+    <a href="staff.html">STAFF PORTAL</a>
+    <a href="index.html#legal">DISCLAIMER</a>
+  </div>
+
+  <div class="login-panel">
+    <h3>STAFF LOGIN</h3>
+    <input type="text" id="username" placeholder="User ID">
+    <input type="password" id="password" placeholder="Password">
+    <button onclick="checkLogin()">LOGIN</button>
+    <div id="error-message"></div>
+  </div>
+
+  <div class="footer">
+    Unauthorized access is prohibited. All attempts are logged and archived.
+  </div>
+
+  <script>
+    function checkLogin() {
+      const user = document.getElementById('username').value.trim().toLowerCase();
+      const pass = document.getElementById('password').value.trim();
+
+      // Set your ARG credentials here
+      const correctUser = "r7.operator";
+      const correctPass = "fracture1991";
+
+      if (user === correctUser && pass === correctPass) {
+        window.location.href = "staff_area.html"; // This should be your hidden ARG content page
+      } else {
+        document.getElementById('error-message').innerText = "ACCESS DENIED: Invalid credentials.";
+      }
+    }
+  </script>
+</body>
+</html>
