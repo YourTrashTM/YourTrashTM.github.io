@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>CoreBreach Staff Login</title>
+  <title>CoreBreach | Staff Portal</title>
   <style>
     body {
       background-color: #dcdcdc;
@@ -14,8 +14,8 @@
       color: #ffffff;
       padding: 15px;
       text-align: center;
-      font-size: 20px;
       font-weight: bold;
+      font-size: 20px;
       border-bottom: 3px double #990000;
     }
     .nav {
@@ -30,82 +30,96 @@
       color: #000;
       font-weight: bold;
     }
-    .login-panel {
-      background-color: #f5f5f5;
-      margin: 40px auto;
+    .frame {
+      border: 2px inset #888;
+      margin: 20px;
       padding: 20px;
-      border: 2px inset #990000;
-      width: 300px;
+      background-color: #f5f5f5;
+    }
+    .banner {
       text-align: center;
+      margin-top: 20px;
     }
-    input[type="text"], input[type="password"] {
-      width: 90%;
-      padding: 8px;
-      margin: 8px 0;
-      border: 1px solid #990000;
-    }
-    button {
-      padding: 8px 16px;
-      border: 1px solid #990000;
-      background-color: #ffffff;
-      color: #990000;
-      font-weight: bold;
-      cursor: pointer;
-    }
-    #error-message {
-      color: #990000;
-      margin-top: 10px;
-      font-size: 12px;
+    .banner img {
+      max-width: 100%;
+      height: auto;
+      border: 2px solid #990000;
     }
     .footer {
-      text-align: center;
       font-size: 10px;
-      color: #666;
+      color: #555;
+      text-align: center;
       padding: 10px;
       border-top: 1px solid #990000;
     }
+    .login-form {
+      max-width: 400px;
+      margin: auto;
+      padding: 20px;
+      border: 1px solid #999;
+      background-color: #eeeeee;
+    }
+    .login-form input {
+      width: 100%;
+      margin: 5px 0;
+      padding: 8px;
+      font-family: inherit;
+    }
+    .login-form button {
+      width: 100%;
+      padding: 10px;
+      background-color: #660000;
+      color: #fff;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+    }
   </style>
+  <script>
+    function checkLogin() {
+      const user = document.getElementById("user").value;
+      const pass = document.getElementById("pass").value;
+      const correctUser = "r7.operator";
+      const correctPass = "fracture1991";
+      if (user === correctUser && pass === correctPass) {
+        window.location.href = "staff_area.html";
+      } else {
+        alert("ACCESS DENIED. Credentials invalid or revoked.");
+      }
+    }
+  </script>
 </head>
 <body>
   <div class="header">
     COREBreach Infrastructure Systems Group<br>
-    INTERNAL ACCESS PORTAL
+    STAFF PORTAL ACCESS NODE
   </div>
 
   <div class="nav">
-    <a href="index.html#about">ABOUT</a>
-    <a href="index.html#solutions">SOLUTIONS</a>
+    <a href="index.html">ABOUT</a>
+    <a href="solutions.html">SOLUTIONS</a>
     <a href="staff.html">STAFF PORTAL</a>
-    <a href="index.html#legal">DISCLAIMER</a>
+    <a href="disclaimer.html">DISCLAIMER</a>
   </div>
 
-  <div class="login-panel">
-    <h3>STAFF LOGIN</h3>
-    <input type="text" id="username" placeholder="User ID">
-    <input type="password" id="password" placeholder="Password">
-    <button onclick="checkLogin()">LOGIN</button>
-    <div id="error-message"></div>
+  <div class="banner">
+    <img src="image/logo.png" alt="CoreBreach Logo">
+  </div>
+
+  <div class="frame">
+    <h2>STAFF LOGIN</h2>
+    <p>Authorized personnel only. Please enter your assigned credentials to proceed to NODE-RIDGE/7 secure interface.</p>
+    <div class="login-form">
+      <input type="text" id="user" placeholder="User ID">
+      <input type="password" id="pass" placeholder="Password">
+      <button onclick="checkLogin()">LOGIN</button>
+    </div>
   </div>
 
   <div class="footer">
-    Unauthorized access is prohibited. All attempts are logged and archived.
+    &copy; CoreBreach Infrastructure Systems Group, 1991–1997. <br>
+    Federal Contract #4581-RN. Internal Routing: NODE-RIDGE/7. <br>
+    UNAUTHORIZED DUPLICATION PROHIBITED UNDER PENALTY OF CODE 12-4F.
   </div>
-
-  <script>
-    function checkLogin() {
-      const user = document.getElementById('username').value.trim().toLowerCase();
-      const pass = document.getElementById('password').value.trim();
-
-      // Set your ARG credentials here
-      const correctUser = "r7.operator";
-      const correctPass = "fracture1991";
-
-      if (user === correctUser && pass === correctPass) {
-        window.location.href = "staff_area.html"; // This should be your hidden ARG content page
-      } else {
-        document.getElementById('error-message').innerText = "ACCESS DENIED: Invalid credentials.";
-      }
-    }
-  </script>
 </body>
 </html>
