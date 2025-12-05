@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>CoreBreach | Infrastructure Solutions</title>
+  <meta charset="UTF-8">
+  <title>CoreBreach Infrastructure Systems Group</title>
   <style>
     body {
       background-color: #dcdcdc;
@@ -9,6 +10,7 @@
       color: #000000;
       margin: 0;
     }
+
     .header {
       background-color: #660000;
       color: #ffffff;
@@ -18,46 +20,197 @@
       font-size: 20px;
       border-bottom: 3px double #990000;
     }
+
     .nav {
       background-color: #e0e0e0;
       padding: 8px;
       text-align: center;
       border-bottom: 2px solid #990000;
     }
+
     .nav a {
       margin: 0 12px;
       text-decoration: none;
       color: #000;
       font-weight: bold;
     }
+
+    .nav a:hover {
+      text-decoration: underline;
+    }
+
+    .banner {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .banner img {
+      max-width: 100%;
+      height: auto;
+      border: 2px solid #990000;
+    }
+
     .frame {
       border: 2px inset #888;
       margin: 20px;
       padding: 20px;
       background-color: #f5f5f5;
     }
+
     .announcement {
       background-color: #fff0f0;
       color: #660000;
       padding: 10px;
       margin-bottom: 20px;
       border: 1px dashed #990000;
+      font-size: 13px;
     }
-    .banner {
-      text-align: center;
+
+    .announcement b {
+      text-transform: uppercase;
+    }
+
+    h2 {
+      margin-top: 0;
+      font-size: 18px;
+      letter-spacing: 1px;
+    }
+
+    h3 {
+      font-size: 14px;
+      margin-top: 18px;
+    }
+
+    p {
+      font-size: 13px;
+      line-height: 1.4;
+    }
+
+    ul {
+      font-size: 13px;
+      line-height: 1.4;
+    }
+
+    /* FEATURE GRID (image + teaser cards) */
+    .feature-grid {
       margin-top: 20px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
     }
-    .banner img {
-      max-width: 100%;
+
+    .feature-card {
+      background-color: #ffffff;
+      border: 1px solid #999;
+      padding: 8px;
+      font-size: 12px;
+    }
+
+    .feature-card img {
+      width: 100%;
       height: auto;
-      border: 2px solid #990000;
+      display: block;
+      border: 1px solid #ccc;
+      margin-bottom: 6px;
     }
+
+    .feature-card h4 {
+      margin: 4px 0;
+      font-size: 13px;
+    }
+
+    .feature-card p {
+      font-size: 12px;
+      margin: 4px 0 8px 0;
+    }
+
+    .feature-card a {
+      font-size: 11px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .feature-card a:hover {
+      text-decoration: underline;
+    }
+
+    /* STATUS + NEWS COLUMNS */
+    .columns {
+      margin-top: 24px;
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 20px;
+    }
+
+    .status-box,
+    .news-box {
+      background-color: #ffffff;
+      border: 1px solid #999;
+      padding: 10px;
+      font-size: 12px;
+    }
+
+    .status-box h3,
+    .news-box h3 {
+      margin-top: 0;
+      font-size: 13px;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .status-list {
+      list-style-type: none;
+      padding-left: 0;
+      margin: 0;
+    }
+
+    .status-list li {
+      margin: 2px 0;
+    }
+
+    .status-ok {
+      color: #006600;
+    }
+
+    .status-warn {
+      color: #996600;
+    }
+
+    .status-info {
+      color: #004466;
+    }
+
+    .news-list {
+      list-style-type: square;
+      margin: 0 0 0 18px;
+      padding: 0;
+    }
+
+    .news-list li {
+      margin-bottom: 6px;
+    }
+
+    .small-link {
+      font-size: 11px;
+      margin-top: 6px;
+    }
+
     .contact-box {
       background-color: #eeeeee;
       padding: 10px;
       margin-top: 30px;
       border: 1px solid #999;
     }
+
+    .contact-box h3 {
+      margin-top: 0;
+      font-size: 14px;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 4px;
+    }
+
     .footer {
       font-size: 10px;
       color: #555;
@@ -74,25 +227,121 @@
   </div>
 
   <div class="nav">
-    <a href="index.html">ABOUT</a>
+    <a href="index.html">HOME</a>
     <a href="solutions.html">SOLUTIONS</a>
     <a href="staff.html">STAFF PORTAL</a>
     <a href="disclaimer.html">DISCLAIMER</a>
   </div>
 
   <div class="banner">
-    <img src="https://media.discordapp.net/attachments/1315561899479269461/1387846148387242055/logo.png?ex=685ed3f2&is=685d8272&hm=13d8dbe7df5a48ac02e43311a0da4cb2ccc6c9a42301766a7f00e4deae5aaa0a&=&format=webp&quality=lossless" alt="CoreBreach Logo" style="width: 200px; height: auto; border: none;">
+    <!-- Replace src with your local logo path when ready -->
+    <img src="static/img/logo.png" alt="CoreBreach Logo" style="width: 200px; height: auto;">
   </div>
 
   <div class="frame">
     <div class="announcement">
-      <b>System Maintenance Notice:</b> Field transmission relays across Ridge 7 will be offline from 22:00–04:00 PST for calibration. Expect degraded uplink performance.
+      <b>Service Advisory:</b>
+      Scheduled maintenance will affect Ridge 7 relay coverage from 22:00–04:00 PST. Customers in the
+      Hollowpine corridor may experience brief interruptions in voice and data services.
     </div>
 
     <div id="about">
-      <h2>ABOUT COREBreach</h2>
-      <p>CoreBreach is a federally contracted infrastructure solutions provider specializing in network reliability, signal maintenance, and long-range communications across rural and mountainous regions. Founded in 1974, the organization has played a critical role in supporting public safety networks and environmental monitoring operations in the Pacific Northwest.</p>
-      <p>Our installations are trusted by local governments, utility cooperatives, and emergency response providers to maintain uptime in even the most geologically complex terrain. All operations are conducted in full compliance with regional and federal regulatory standards.</p>
+      <h2>WELCOME TO COREBreach</h2>
+      <p>
+        CoreBreach is a regional infrastructure partner providing network reliability, signal maintenance
+        and long-range communications support for communities across the Pacific Northwest. Since 1974 we
+        have worked alongside local governments, utilities and emergency services to keep critical
+        connections online in difficult terrain.
+      </p>
+      <p>
+        From ridge-top relay towers to low-power remote monitoring sites, our teams design and maintain
+        systems that keep information moving when weather, distance or geography make conventional
+        coverage unreliable. Our focus is simple: stable uptime, clear signal paths and dependable support
+        for the organizations that rely on us.
+      </p>
+      <h3>What We Do</h3>
+      <ul>
+        <li>Design and maintenance of rural and mountainous relay networks.</li>
+        <li>Support for public safety and emergency response communications.</li>
+        <li>Long-range signal testing and site surveys for new build-outs.</li>
+        <li>Monitoring of infrastructure performance for partner municipalities.</li>
+      </ul>
+      <p>
+        CoreBreach currently supports service corridors in and around Hollowpine Ridge, the interior
+        Cascadia region and selected coastal townships. To learn more about how our systems integrate
+        with your existing infrastructure, visit the <a href="solutions.html">Solutions</a> section.
+      </p>
+    </div>
+
+    <!-- FEATURED STORIES / IMAGE TILES -->
+    <div class="feature-grid">
+      <div class="feature-card">
+        <img src="static/img/feature_ridge7.jpg" alt="Ridge 7 relay maintenance">
+        <h4>Ridge 7 Access Upgrade</h4>
+        <p>
+          CoreBreach crews have completed a multi-phase upgrade to relay access points
+          along the Ridge 7 corridor to improve reliability for Hollowpine and nearby communities.
+        </p>
+        <a href="stories/ridge7-upgrade.html">Read service summary &raquo;</a>
+      </div>
+
+      <div class="feature-card">
+        <img src="static/img/feature_cave_survey.jpg" alt="Subsurface survey image">
+        <h4>Hollowpine Cavern Survey</h4>
+        <p>
+          A recent subsurface survey identified previously undocumented wall markings near
+          a proposed equipment site. Analysis suggests the markings predate modern settlement.
+        </p>
+        <a href="stories/cavern-survey.html">View survey overview &raquo;</a>
+      </div>
+
+      <div class="feature-card">
+        <img src="static/img/feature_remote_obs.jpg" alt="Remote observation equipment">
+        <h4>Remote Observation Pilot</h4>
+        <p>
+          New low-power observation units are being trialed in select off-grid areas to
+          monitor environmental conditions and infrastructure performance year-round.
+        </p>
+        <a href="stories/remote-observation.html">Learn more about the pilot &raquo;</a>
+      </div>
+    </div>
+
+    <div class="columns">
+      <div class="status-box">
+        <h3>Service Status</h3>
+        <ul class="status-list">
+          <li><span class="status-ok">[ NORMAL ]</span> Hollowpine Municipal Coverage</li>
+          <li><span class="status-ok">[ NORMAL ]</span> Ridge 3 Relay Cluster</li>
+          <li><span class="status-warn">[ MAINTENANCE ]</span> Ridge 7 Corridor (22:00–04:00 PST)</li>
+          <li><span class="status-info">[ ARCHIVE ]</span> Legacy survey sites (non-customer locations)</li>
+        </ul>
+        <p class="small-link">
+          For outage details and historical records, please see the
+          <a href="disclaimer.html">Service Information &amp; Disclaimer</a> page.
+        </p>
+      </div>
+
+      <div class="news-box">
+        <h3>Updates &amp; Notices</h3>
+        <ul class="news-list">
+          <li>
+            Hollowpine Emergency Services contract renewed through Q4 1998, with expanded coverage for
+            outlying homes and businesses along the Ridge 7 access road.
+          </li>
+          <li>
+            Seasonal wildlife activity near Tower 3 has increased. Field crews are asked to limit
+            non-essential site visits after dark; no impact to customer service is expected.
+          </li>
+          <li>
+            Legacy monitoring data from early survey programs has been transferred to protected
+            archival storage for long-term analysis. This information does not affect active accounts.
+          </li>
+        </ul>
+        <p class="small-link">
+          Municipal partners and authorized contacts can review full bulletins via the
+          <a href="staff.html">Staff Portal</a>.
+        </p>
+      </div>
     </div>
 
     <div class="contact-box">
