@@ -128,10 +128,10 @@ local function updateMovementInput()
 
 	-- Check WASD keys
 	if UserInputService:IsKeyDown(Enum.KeyCode.W) then
-		inputVector = inputVector + Vector3.new(0, 0, -1)
+		inputVector = inputVector + Vector3.new(0, 0, 1)
 	end
 	if UserInputService:IsKeyDown(Enum.KeyCode.S) then
-		inputVector = inputVector + Vector3.new(0, 0, 1)
+		inputVector = inputVector + Vector3.new(0, 0, -1)
 	end
 	if UserInputService:IsKeyDown(Enum.KeyCode.A) then
 		inputVector = inputVector + Vector3.new(-1, 0, 0)
@@ -226,7 +226,10 @@ local function updateCamera()
 
 	-- Calculate camera position with nudge offset
 	local characterPosition = rootPart.Position
-	local nudgeOffset3D = Vector3.new(currentNudgeOffset.X, 0, currentNudgeOffset.Y)
+	-- Map screen coordinates to world coordinates correctly:
+	-- Screen X (left/right) -> World Z (left/right from top-down view)
+	-- Screen Y (up/down) -> World X (forward/backward from top-down view)
+	local nudgeOffset3D = Vector3.new(currentNudgeOffset.Y, 0, currentNudgeOffset.X)
 
 	local baseCameraPosition = Vector3.new(
 		characterPosition.X + nudgeOffset3D.X,
