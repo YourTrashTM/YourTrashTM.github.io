@@ -13,9 +13,9 @@ TopDownCameraController.__index = TopDownCameraController
 -- Default configuration
 local DEFAULT_CONFIG = {
 	-- Perspective
-	Pitch = 70, -- Degrees from horizontal
-	BaseHeight = 20,
-	BaseDistance = 15,
+	Pitch = 90, -- Degrees from horizontal (90 = true top-down)
+	BaseHeight = 25,
+	BaseDistance = 0,
 
 	-- Rotation mode: "WorldAligned", "AimAligned", "MovementAligned"
 	RotationMode = "WorldAligned",

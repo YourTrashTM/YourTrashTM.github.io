@@ -1,12 +1,14 @@
 -- ConfigProfiles.lua
 -- Example configuration profiles for different game scenarios
+-- Note: Pitch = 90 is true top-down (looking straight down)
+--       Pitch < 90 creates an angled/isometric view
 
 return {
 	-- Hotline Miami inspired tight responsive camera
 	HotlineMiami = {
-		Pitch = 75,
-		BaseHeight = 18,
-		BaseDistance = 12,
+		Pitch = 90,
+		BaseHeight = 22,
+		BaseDistance = 0,
 		RotationMode = "WorldAligned",
 		RotationYaw = 0,
 		FollowSmoothTime = 0.08,
@@ -32,9 +34,9 @@ return {
 
 	-- Indoor focused tight quarters
 	IndoorTactical = {
-		Pitch = 70,
-		BaseHeight = 15,
-		BaseDistance = 10,
+		Pitch = 90,
+		BaseHeight = 18,
+		BaseDistance = 0,
 		RotationMode = "AimAligned",
 		MaxYawAdjustment = 20,
 		YawSmoothTime = 0.2,
@@ -81,9 +83,9 @@ return {
 
 	-- Hyper responsive esports style
 	Competitive = {
-		Pitch = 72,
-		BaseHeight = 20,
-		BaseDistance = 14,
+		Pitch = 90,
+		BaseHeight = 24,
+		BaseDistance = 0,
 		RotationMode = "AimAligned",
 		MaxYawAdjustment = 25,
 		YawSmoothTime = 0.08,
@@ -123,9 +125,9 @@ return {
 
 	-- Multi-floor dungeon crawler
 	DungeonCrawler = {
-		Pitch = 68,
-		BaseHeight = 18,
-		BaseDistance = 13,
+		Pitch = 90,
+		BaseHeight = 21,
+		BaseDistance = 0,
 		RotationMode = "WorldAligned",
 		FollowSmoothTime = 0.12,
 		AimSmoothTime = 0.18,
