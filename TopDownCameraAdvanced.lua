@@ -8,6 +8,7 @@
 	- Camera shake system (for impacts/actions)
 	- Smoother edge nudging with acceleration
 	- Optional camera tilt for slight perspective
+	- Character-relative movement (WASD moves in direction character faces)
 
 	Instructions:
 	Place this script in StarterPlayer > StarterCharacterScripts
@@ -34,6 +35,7 @@ local NUDGE_ACCELERATION = 0.08 -- Acceleration for nudging
 local CHARACTER_ROTATION_SPEED = 0.25 -- How fast character rotates
 local ZOOM_SPEED = 5 -- Mouse wheel zoom speed
 local CAMERA_TILT = 0 -- Optional slight tilt (0 = directly top-down, 5-10 = slight angle)
+local MOVEMENT_SPEED = 16 -- Character movement speed
 
 -- Camera nudge system
 local currentNudgeOffset = Vector2.new(0, 0)
@@ -44,6 +46,9 @@ local nudgeVelocity = Vector2.new(0, 0)
 local shakeOffset = Vector3.new(0, 0, 0)
 local shakeIntensity = 0
 local shakeDuration = 0
+
+-- Movement input tracking
+local moveVector = Vector3.new(0, 0, 0)
 
 -- Character references
 local character = player.Character or player.CharacterAdded:Wait()
@@ -117,6 +122,50 @@ local function facePosition(position)
 	end
 end
 
+-- Update movement input
+local function updateMovementInput()
+	local inputVector = Vector3.new(0, 0, 0)
+
+	-- Check WASD keys
+	if UserInputService:IsKeyDown(Enum.KeyCode.W) then
+		inputVector = inputVector + Vector3.new(0, 0, -1)
+	end
+	if UserInputService:IsKeyDown(Enum.KeyCode.S) then
+		inputVector = inputVector + Vector3.new(0, 0, 1)
+	end
+	if UserInputService:IsKeyDown(Enum.KeyCode.A) then
+		inputVector = inputVector + Vector3.new(-1, 0, 0)
+	end
+	if UserInputService:IsKeyDown(Enum.KeyCode.D) then
+		inputVector = inputVector + Vector3.new(1, 0, 0)
+	end
+
+	-- Normalize diagonal movement
+	if inputVector.Magnitude > 0 then
+		inputVector = inputVector.Unit
+	end
+
+	moveVector = inputVector
+end
+
+-- Apply character-relative movement
+local function applyMovement()
+	if not humanoid or not rootPart or not rootPart.Parent then return end
+
+	-- Calculate movement direction relative to character's facing direction
+	local characterLookVector = rootPart.CFrame.LookVector
+	local characterRightVector = rootPart.CFrame.RightVector
+
+	-- Transform input from local space to world space
+	local worldMoveDirection = (characterLookVector * moveVector.Z) + (characterRightVector * moveVector.X)
+	worldMoveDirection = Vector3.new(worldMoveDirection.X, 0, worldMoveDirection.Z) -- Keep on horizontal plane
+
+	-- Set the humanoid's move direction
+	if worldMoveDirection.Magnitude > 0 then
+		humanoid:Move(worldMoveDirection * MOVEMENT_SPEED)
+	end
+end
+
 -- Camera shake function (can be called from other scripts)
 local function shakeCamera(intensity, duration)
 	shakeIntensity = math.max(shakeIntensity, intensity)
@@ -160,6 +209,10 @@ local function updateCamera()
 
 	if not rootPart or not rootPart.Parent then return end
 
+	-- Update movement input and apply character-relative movement
+	updateMovementInput()
+	applyMovement()
+
 	-- Calculate target nudge with acceleration
 	targetNudgeOffset = calculateNudgeOffset()
 
@@ -171,19 +224,22 @@ local function updateCamera()
 	-- Update camera shake
 	updateCameraShake(deltaTime)
 
-	-- Calculate camera position
+	-- Calculate camera position with nudge offset
 	local characterPosition = rootPart.Position
+	local nudgeOffset3D = Vector3.new(currentNudgeOffset.X, 0, currentNudgeOffset.Y)
+
 	local baseCameraPosition = Vector3.new(
-		characterPosition.X + currentNudgeOffset.X,
+		characterPosition.X + nudgeOffset3D.X,
 		characterPosition.Y + CAMERA_HEIGHT,
-		characterPosition.Z + currentNudgeOffset.Y
+		characterPosition.Z + nudgeOffset3D.Z
 	)
 
 	-- Apply camera shake
 	local finalCameraPosition = baseCameraPosition + shakeOffset
 
 	-- Create camera CFrame with optional tilt
-	local lookAtPosition = characterPosition
+	-- Fix: lookAt position should be offset to maintain straight-down angle
+	local lookAtPosition = characterPosition + nudgeOffset3D
 	local cameraCFrame = CFrame.new(finalCameraPosition, lookAtPosition)
 
 	-- Apply optional tilt for slight perspective
@@ -246,6 +302,7 @@ player.CharacterAdded:Connect(function(newCharacter)
 	shakeOffset = Vector3.new(0, 0, 0)
 	shakeIntensity = 0
 	shakeDuration = 0
+	moveVector = Vector3.new(0, 0, 0)
 end)
 
 -- Connect main update loop
@@ -256,3 +313,4 @@ _G.ShakeCamera = shakeCamera
 
 print("Advanced Top-Down Camera System loaded!")
 print("Controls: Mouse Wheel = Zoom, R = Reset Zoom, T = Test Shake")
+print("Features: Character-relative movement (WASD)")

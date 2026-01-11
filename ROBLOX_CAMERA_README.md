@@ -6,6 +6,7 @@ A Hotline Miami-style top-down camera system for Roblox Studio with orthographic
 
 - **Orthographic Top-Down View**: Camera positioned directly above the player with minimal perspective distortion
 - **Cursor-Based Character Rotation**: Character automatically faces the direction of the mouse cursor
+- **Character-Relative Movement**: WASD moves the character in the direction they're facing (not screen-relative)
 - **Edge Nudging**: Camera smoothly shifts when cursor approaches screen edges (10% extra viewing area)
 - **Smooth Transitions**: All camera movements and character rotations are smoothly interpolated
 
@@ -37,6 +38,7 @@ local CAMERA_FOV = 70                 -- Field of view (lower = more orthographi
 local NUDGE_PERCENTAGE = 0.10         -- 10% extra viewing area at edges
 local NUDGE_SMOOTHNESS = 0.15         -- Camera nudge smoothness (0.1 = smooth, 0.3 = snappy)
 local CHARACTER_ROTATION_SPEED = 0.2  -- Character rotation speed (0.1 = slow, 0.5 = fast)
+local MOVEMENT_SPEED = 16             -- Character movement speed
 ```
 
 ### Recommended Settings for Different Feels
@@ -76,8 +78,16 @@ local CAMERA_FOV = 60
 ### Edge Nudging
 - Monitors cursor position relative to screen edges
 - Begins nudging when cursor is 70% towards any edge
+- Camera position AND lookAt target are both offset to maintain straight-down angle
 - Smoothly interpolates offset up to 10% of camera height
-- Creates extra viewing area without jarring movements
+- Creates extra viewing area without jarring movements or tilting
+
+### Character-Relative Movement
+- WASD controls are relative to where the character is facing
+- Pressing W moves forward (towards cursor direction)
+- Pressing S moves backward (away from cursor)
+- Pressing A/D strafes left/right relative to facing direction
+- Movement feels natural and intuitive for top-down gameplay
 
 ## Troubleshooting
 
