@@ -152,17 +152,27 @@ end
 local function applyMovement()
 	if not humanoid or not rootPart or not rootPart.Parent then return end
 
-	-- Calculate movement direction relative to character's facing direction
-	local characterLookVector = rootPart.CFrame.LookVector
-	local characterRightVector = rootPart.CFrame.RightVector
+	-- Calculate movement direction relative to CURSOR position, not character's current rotation
+	-- This prevents lag/jitter from character rotation smoothing
+	local mouseWorldPos = getMouseWorldPosition()
+	local characterPosition = rootPart.Position
 
-	-- Transform input from local space to world space
-	local worldMoveDirection = (characterLookVector * moveVector.Z) + (characterRightVector * moveVector.X)
-	worldMoveDirection = Vector3.new(worldMoveDirection.X, 0, worldMoveDirection.Z) -- Keep on horizontal plane
+	-- Calculate forward direction (towards cursor)
+	local cursorDirection = (mouseWorldPos - characterPosition) * Vector3.new(1, 0, 1)
 
-	-- Set the humanoid's move direction
-	if worldMoveDirection.Magnitude > 0 then
-		humanoid:Move(worldMoveDirection * MOVEMENT_SPEED)
+	if cursorDirection.Magnitude > 0.1 then
+		cursorDirection = cursorDirection.Unit
+
+		-- Calculate right direction (perpendicular to cursor direction)
+		local cursorRight = Vector3.new(cursorDirection.Z, 0, -cursorDirection.X)
+
+		-- Transform input from local space to world space based on cursor direction
+		local worldMoveDirection = (cursorDirection * moveVector.Z) + (cursorRight * moveVector.X)
+
+		-- Set the humanoid's move direction
+		if worldMoveDirection.Magnitude > 0 then
+			humanoid:Move(worldMoveDirection * MOVEMENT_SPEED)
+		end
 	end
 end
 
@@ -228,8 +238,8 @@ local function updateCamera()
 	local characterPosition = rootPart.Position
 	-- Map screen coordinates to world coordinates correctly:
 	-- Screen X (left/right) -> World Z (left/right from top-down view)
-	-- Screen Y (up/down) -> World X (forward/backward from top-down view)
-	local nudgeOffset3D = Vector3.new(currentNudgeOffset.Y, 0, currentNudgeOffset.X)
+	-- Screen Y (up/down) -> World -X (invert because screen Y increases downward)
+	local nudgeOffset3D = Vector3.new(-currentNudgeOffset.Y, 0, currentNudgeOffset.X)
 
 	local baseCameraPosition = Vector3.new(
 		characterPosition.X + nudgeOffset3D.X,
